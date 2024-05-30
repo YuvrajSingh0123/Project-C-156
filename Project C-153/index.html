@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+  
+  <head>
+
+    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
+
+    <script src="./components/scuba_diver.js"></script>
+    
+    <script src="./components/coin.js"></script>
+        
+    <script src="./components/fish.js"></script>
+
+    <script src="./components/game.js"></script>
+
+   
+  </head>
+
+  <body>
+    
+    <a-scene background="color:#026F90">
+
+      <a-entity id="look" look-controls camera position="0 8 8"></a-entity>
+
+      <!--Asset Management-->
+      <a-assets timeout="10000">        
+        <a-asset-item
+          id="IslandMap"
+          src="./assets/low_poly_island/scene.gltf"
+        ></a-asset-item>
+
+        <a-asset-item
+          id="scuba_diver"
+          src="./assets/scuba_diver/scene.gltf"
+        ></a-asset-item>
+
+        
+      </a-assets>
+
+      <!-- Island  -->
+      <a-entity
+        id="Island"
+        gltf-model="#IslandMap"
+        position="0 0 0"
+        scale="10 10 10"
+        island-rotation-reader
+        coins
+        fishes
+      >
+      </a-entity>
+
+      <!-- Scuba-diver -->
+      <a-entity
+        id="diver"
+        gltf-model="#scuba_diver"
+        position="8 2 6"
+        scale="1.5 1.5 1.5"
+        rotation="0 180 0"
+        diver-rotation-reader   
+        game-play
+      >
+      </a-entity>
+
+      <a-entity id="header" position="1 -4 0">
+
+        <a-entity
+          position="-28.5 21.5 0"
+          text="font: exo2bold; align: center; width: 40; color: black; value: VIRTUAL FLIGHT"
+        ></a-entity>
+
+  
+        <a-entity position="-23.5 19.3 0">
+          <a-entity
+            position="-1.5 0.07 0"
+            text="font: aileronsemibold; width: 12; color: black; value: TIME\nREMAINING"
+          ></a-entity>
+          <a-entity
+            id="timer"
+            position="-9.8 0.3 0"
+            text="font: exo2bold; align: center; width: 30; color: black; value: 00:00"
+          ></a-entity>
+        </a-entity>
+
+    
+        <a-entity position="-18 19.3 0">
+          <a-entity
+            position="-0.6 0.13 0"
+            text="font: aileronsemibold; width: 12; color: black; value: TRAGETS\nREMAINING"
+          ></a-entity>
+          <a-entity
+            id="targets"
+            position="-8 0.3 0"
+            text="font: exo2bold; align: center; width: 30; color: black; value: 20"
+          ></a-entity>
+        </a-entity>
+
+      
+        <a-entity position="30.5 21.5 0">
+          <a-entity
+            position=""
+            text="font: exo2bold; align: center; width: 40; color: black; value: SCORE"
+          ></a-entity>
+          <a-entity
+            id="score"
+            position="0 -2 0"
+            text="font: exo2bold; align: center; width: 40; color: black; value: 0"
+          ></a-entity>
+        </a-entity>
+      </a-entity>
+
+
+      <a-entity
+        id="game_over_text"
+        position="0 7.5 0"
+        text="font: exo2bold; align: center; width: 100; color: white;value: Game Over!!!"
+        visible="false"
+      ></a-entity>
+
+    </a-scene>
+  </body>
+</html>
+
+
